@@ -13,14 +13,10 @@ $route=segment(1);
 if($route=='/'){
     $route='mensagem';
 }
-switch ($route) {
-    case 'auth':
+$filename=ROOT.'call/call.json';
+$repos=json_decode(file_get_contents($filename));
+if(in_array($route,$repos)){
     route($route);
-    break;
-    case 'mensagem':
-    route($route);
-    break;
-    default:
+}else{
     view('home/404');
-    break;
 }
